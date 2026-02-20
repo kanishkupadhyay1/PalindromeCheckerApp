@@ -3,13 +3,15 @@ import java.util.*;
 // Entry point
 public class PalindromeCheckerApplication {
 
-    public static boolean PalindromeCheckerStack(String Input){
+    public static boolean PalindromeCheckerStackQueue(String Input){
         Stack<Character> ReversedInput=new Stack<>();
+        Queue<Character> queue=new LinkedList<>();
         for(char c: Input.toCharArray()){
             ReversedInput.push(c);
+            queue.add(c);
         }
-        for(char c: Input.toCharArray()){
-            if(c!=ReversedInput.pop()){
+        while(!queue.isEmpty()){
+            if(queue.poll()!=ReversedInput.pop()){
                 return false;
             }
         }
@@ -19,9 +21,9 @@ public class PalindromeCheckerApplication {
     public static void main(String[] args){
         System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
 
-        //Uc 5 Stack string method
-        String Input=new String("noon");
+        //Uc 6 Stack Queue string method
+        String Input=new String("civic");
         System.out.println("Input Text: "+Input);
-        System.out.println("Is it Palindrome? : "+PalindromeCheckerStack(Input));
+        System.out.println("Is it Palindrome? : "+PalindromeCheckerStackQueue(Input));
     }
 }
