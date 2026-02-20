@@ -21,7 +21,7 @@ public class PalindromeCheckerApplication {
     public static void main(String[] args){
         System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
 
-        //Uc 4 Two Pointer string method
+        //Uc 4 Two Pointer string method(Character Array)
         String Input=new String("radar");
         System.out.println("Input Text: "+Input);
         System.out.println("Is it Palindrome? : "+PalindromeCheckerTwoPointer(Input));
