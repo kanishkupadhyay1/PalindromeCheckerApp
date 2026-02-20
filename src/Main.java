@@ -1,7 +1,7 @@
 import java.util.*;
 
 //Use case 1 Entry point
-public class PalindromeCheckerApplication1 {
+public class Main {
     public static boolean PalindromeCheckerDeuqe(String Input){
         Deque<Character> deque=new ArrayDeque<>();
         for(char c: Input.toCharArray()){
