@@ -1,12 +1,6 @@
 import java.util.*;
-
-
-
 // Entry point
 public class PalindromeCheckerApplication {
-
-
-
     //method to check palindrome in recursive way
     public static boolean PalindromeCheckRecursive(String Input,int start,int end){
         if(start>=end){
