@@ -29,7 +29,7 @@ public class PalindromeCheckerApplication {
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
 
-        //Uc 9  Palindrome Check Recursive
+        //Uc 10  Palindrome Check Recursive
         System.out.println("Enter the string");
         String Input=sc.nextLine();
         Input=new String(normalize(Input));
