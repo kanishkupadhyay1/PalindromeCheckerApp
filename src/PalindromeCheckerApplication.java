@@ -1,12 +1,6 @@
 import java.util.*;
 
-
-
-// Entry point
-public class PalindromeCheckerApplication {
-
-
-
+class PalindromeChecker{
     //method to check palindrome in recursive way
     public static boolean PalindromeCheckRecursive(String Input,int start,int end){
         if(start>=end){
@@ -30,16 +24,24 @@ public class PalindromeCheckerApplication {
         return sb.toString();
     }
 
+}
+// Entry point
+public class PalindromeCheckerApplication {
+
+
+
+
     //main method
     public static void main(String[] args){
+        PalindromeChecker service=new PalindromeChecker();
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
 
         //Uc 9  Palindrome Check Recursive
         System.out.println("Enter the string");
         String Input=sc.nextLine();
-        Input=new String(normalize(Input));
-        System.out.println("Input Text: "+Input);
-        System.out.println("Is it Palindrome? : "+PalindromeCheckRecursive(Input,0,Input.length()-1));
+        Input=new String(service.normalize(Input));
+
+        System.out.println("Is it Palindrome? : "+service.PalindromeCheckRecursive(Input,0,Input.length()-1));
     }
 }
