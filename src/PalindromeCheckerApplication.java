@@ -1,39 +1,113 @@
 import java.util.*;
-// Entry point
-public class PalindromeCheckerApplication {
-    //method to check palindrome in recursive way
-    public static boolean PalindromeCheckRecursive(String Input,int start,int end){
-        if(start>=end){
-            return true;
+
+interface PalindromeStrategy {//interface
+    boolean isPalindrome(String input);
+}
+
+class StackStrategy implements PalindromeStrategy { //stack one
+
+    @Override
+    public boolean isPalindrome(String input) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : input.toCharArray()) {
+            stack.push(ch);
         }
-        if(Input.charAt(start)!=Input.charAt(end)){
-            return false;
+
+        for (char ch : input.toCharArray()) {
+            if (ch != stack.pop()) {
+                return false;
+            }
         }
-        return PalindromeCheckRecursive(Input,start+1,end-1);
+        return true;
+    }
+}
+
+class DequeStrategy implements PalindromeStrategy { //deque one
+
+    @Override
+    public boolean isPalindrome(String input) {
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char ch : input.toCharArray()) {
+            deque.addLast(ch);
+        }
+
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+class PalindromeChecker {
+
+    private PalindromeStrategy strategy;
+
+    public PalindromeChecker(PalindromeStrategy strategy) {
+        this.strategy = strategy;
     }
 
-    //method to normalize the input
-    public static String normalize(String Input){
-        StringBuilder sb=new StringBuilder();
+    public boolean check(String input) {
+        return strategy.isPalindrome(input);
+    }
 
-        for(char ch : Input.toCharArray()){
-            if(ch!=' ') {
+    public static String normalize(String input) {
+        StringBuilder sb = new StringBuilder();
+
+        for (char ch : input.toCharArray()) {
+            if (ch != ' ') {
                 sb.append(Character.toLowerCase(ch));
             }
         }
         return sb.toString();
     }
+}
 
-    //main method
-    public static void main(String[] args){
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
+public class PalindromeCheckerApplication {
 
-        //Uc 10  Palindrome Check Recursive
-        System.out.println("Enter the string");
-        String Input=sc.nextLine();
-        Input=new String(normalize(Input));
-        System.out.println("Input Text: "+Input);
-        System.out.println("Is it Palindrome? : "+PalindromeCheckRecursive(Input,0,Input.length()-1));
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Welcome to the Palindrome Checker Management System");
+        System.out.println("Version : 1.0.00.0");
+        System.out.println("System Initialized Successfully.\n");
+
+        System.out.println("Choose Strategy:");
+        System.out.println("1. Stack");
+        System.out.println("2. Deque");
+
+
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Enter the string:");
+        String input = sc.nextLine();
+        input = PalindromeChecker.normalize(input);
+
+        PalindromeStrategy strategy;
+
+        switch (choice) {   //i used menue for stratagy type
+            case 1:
+                strategy = new StackStrategy();
+                break;
+            case 2:
+                strategy = new DequeStrategy();
+                break;
+
+            default:
+                System.out.println("Invalid choice. Using Recursive strategy.");
+                strategy = new StackStrategy();
+        }
+
+        PalindromeChecker checker = new PalindromeChecker(strategy);
+
+        System.out.println("Is it Palindrome? : " + checker.check(input));
+
+        sc.close();
     }
 }
