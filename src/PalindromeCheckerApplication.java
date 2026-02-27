@@ -37,7 +37,7 @@ public class PalindromeCheckerApplication {
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to the Palindrome Checker Management System\nVersion : 1.0.00.0\nSystem Initialized Successfully.");
 
-        //Uc 10  
+        //Uc 11
         System.out.println("Enter the string");
         String Input=sc.nextLine();
         Input=new String(service.normalize(Input));
