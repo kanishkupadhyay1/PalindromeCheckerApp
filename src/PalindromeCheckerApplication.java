@@ -3,7 +3,7 @@ import java.util.*;
 class PalindromeChecker{
     //method to check palindrome in recursive way
     public static boolean PalindromeCheckRecursive(String Input,int start,int end){
-        if(start>=end){
+        if(start>=end){ //base condition
             return true;
         }
         if(Input.charAt(start)!=Input.charAt(end)){
